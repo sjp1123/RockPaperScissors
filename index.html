@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(26, 26, 26);
+        }
+
+        #title {
+            padding: 10px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .game_container {
+            text-align: center;
+            color: white;
+        }
+
+        .game_container > * {
+            margin: 20px 0;
+        }
+
+        #question {
+            display: inline-block;
+            width:96px;
+            height:96px;
+            text-align: center;
+            font-size: 4rem;
+            border: 3px solid white;
+            border-radius: 1000px;
+        }
+
+        #vs {
+            font-size: 3rem;
+        }
+
+        footer {
+            padding-bottom: 3px;
+            text-align: center;
+            background-color: gray;
+            border: 1px solid black;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            display: fixed;
+        }
+
+        img {
+            border: 2px solid white;
+            border-radius: 1000px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">가위바위보</h1>
+
+    <div class="game_container">
+        <div class="com-choice">
+            <span id="question">?</span>
+        </div>
+
+        <h2 id="vs">VS</h2>
+
+        <div class="player_img_select">
+            <img src="icons8-hand-scissors-96.png" alt="">
+            <img src="icons8-hand-rock-96.png" alt="">
+            <img src="icons8-hand-paper-96.png" alt="">
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <a target="_blank" href="https://icons8.com/icon/17663/hand-rock">Hand Rock</a> icon by <a target="_blank"
+            href="https://icons8.com">Icons8</a>,
+        <a target="_blank" href="https://icons8.com/icon/17664/hand-scissors">Hand
+            Scissors</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>,
+        <a target="_blank" href="https://icons8.com/icon/17678/hand">Hand</a> icon by <a target="_blank"
+            href="https://icons8.com">Icons8</a>
+    </footer>
+</body>
+
+<script>
+
+</script>
+
+</html>
