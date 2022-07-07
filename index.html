@@ -21,26 +21,40 @@
         }
 
         .game_container {
+            font-size: 3rem;
             text-align: center;
             color: white;
         }
 
-        .game_container > * {
+        .game_container>* {
             margin: 20px 0;
         }
 
         #question {
             display: inline-block;
-            width:96px;
-            height:96px;
+            width: 100px;
+            height: 100px;
             text-align: center;
             font-size: 4rem;
             border: 3px solid white;
-            border-radius: 1000px;
+            border-radius: 100%;
         }
 
         #vs {
             font-size: 3rem;
+        }
+
+        .player_img_select {
+            display: inline-block;
+        }
+        
+        img {
+            width: 100px;
+            border: 2px solid white;
+            border-radius: 100%;
+            margin: 0 10px;
+            padding: 5px;
+            transition: all 0.5s;
         }
 
         footer {
@@ -51,14 +65,8 @@
             width: 100%;
             position: absolute;
             bottom: 0;
-            display: fixed;
         }
 
-        img {
-            border: 2px solid white;
-            border-radius: 1000px;
-            margin: 0 10px;
-        }
     </style>
 </head>
 
@@ -73,26 +81,47 @@
         <h2 id="vs">VS</h2>
 
         <div class="player_img_select">
-            <img src="icons8-hand-scissors-96.png" alt="">
-            <img src="icons8-hand-rock-96.png" alt="">
-            <img src="icons8-hand-paper-96.png" alt="">
+            <img id="scissors" src="icons8-hand-scissors-96.png" alt="">
+            <img id="rock" src="icons8-hand-rock-96.png" alt="">
+            <img id="paper" src="icons8-hand-paper-96.png" alt="">
         </div>
+
+        <p>고르시오!</p>
     </div>
 
 
 
 
-    <footer>
+    <!-- <footer>
         <a target="_blank" href="https://icons8.com/icon/17663/hand-rock">Hand Rock</a> icon by <a target="_blank"
             href="https://icons8.com">Icons8</a>,
         <a target="_blank" href="https://icons8.com/icon/17664/hand-scissors">Hand
             Scissors</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>,
         <a target="_blank" href="https://icons8.com/icon/17678/hand">Hand</a> icon by <a target="_blank"
             href="https://icons8.com">Icons8</a>
-    </footer>
+    </footer> -->
 </body>
 
 <script>
+    const playerImgSelect = document.querySelector("div.player_img_select");
+    const images = playerImgSelect.querySelectorAll("img");
+
+    const question = document.querySelector("#question");
+
+    const HandleClick = (event) => {
+        const element = event.target;
+        const elementId = element.id;
+
+        for (let i = 0; i < images.length; i++) {
+            if (images[i].id !== elementId) {
+                images[i].remove();
+            }
+        }
+    }
+
+    for (image of images) {
+        image.addEventListener("click", HandleClick);
+    }
 
 </script>
 
