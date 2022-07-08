@@ -21,7 +21,7 @@
         }
 
         .game_container {
-            font-size: 36px;
+            font-size: 3rem;
             text-align: center;
             color: white;
         }
@@ -40,6 +40,11 @@
             border-radius: 100%;
         }
 
+        .turn {
+            transform: rotateY(1080deg);
+            transition: all 3s;
+        }
+
         #vs {
             font-size: 3rem;
         }
@@ -47,7 +52,7 @@
         .player_img_select {
             display: inline-block;
         }
-        
+
         img {
             width: 100px;
             border: 2px solid white;
@@ -66,7 +71,6 @@
             position: absolute;
             bottom: 0;
         }
-
     </style>
 </head>
 
@@ -83,12 +87,12 @@
         <h2 id="vs">VS</h2>
 
         <div class="player_img_select">
-            <img id="scissors" src="icons8-hand-scissors-96.png" alt="">
-            <img id="rock" src="icons8-hand-rock-96.png" alt="">
-            <img id="paper" src="icons8-hand-paper-96.png" alt="">
+            <img id="0" src="icons8-hand-scissors-96.png" alt="">
+            <img id="1" src="icons8-hand-rock-96.png" alt="">
+            <img id="2" src="icons8-hand-paper-96.png" alt="">
         </div>
 
-        <p>고르시오!</p>
+        <p id="result">가위바위보!</p>
     </div>
 
 
@@ -108,7 +112,21 @@
     const playerImgSelect = document.querySelector("div.player_img_select");
     const images = playerImgSelect.querySelectorAll("img");
 
-    const question = document.querySelector("#question");
+    const computerChoice = document.querySelector(".com-choice");
+    const questionContainer = document.querySelector("#question-container");
+    const result = document.getElementById("result");
+
+    const CheckIfWin = (playerId, computerId) => {
+        console.log(playerId, computerId);
+        if (playerId == computerId) {
+            return "비겼습니다!";
+        } else if ((playerId == 0 && computerId == 2) || (playerId == 1 && computerId == 0) || (playerId == 2 &&
+            computerId == 1)) {
+            return "이겼습니다!";
+        } else {
+            return "졌습니다!";
+        }
+    }
 
     const HandleClick = (event) => {
         const element = event.target;
@@ -119,6 +137,17 @@
                 images[i].remove();
             }
         }
+
+        questionContainer.classList.add("turn");
+
+        setTimeout(() => {
+            questionContainer.remove()
+            const randomNumber = Math.floor(Math.random() * 3);
+            const randomImg = images[randomNumber].cloneNode(true);
+            computerChoice.appendChild(randomImg);
+            const resultText = CheckIfWin(parseInt(elementId), randomNumber);
+            result.innerText = resultText;
+        }, 3000);
     }
 
     for (image of images) {
