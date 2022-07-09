@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: all 0.5s;
         }
 
         body {
@@ -23,20 +26,20 @@
 
         .face-icon {
             color: white;
-            font-size: 5rem;
+            font-size: 10rem;
             position: absolute;
         }
 
         .face .face-icon:first-child {
             left: 0;
             top: 50%;
-            margin-left: 50px;
+            margin-left: 75px;
         }
 
         .face .face-icon:last-child {
             right: 0;
             top: 50%;
-            margin-right: 50px;
+            margin-right: 75px;
         }
 
         .game_container {
@@ -45,16 +48,20 @@
             color: white;
         }
 
-        .game_container > * {
+        .game_container>* {
             margin: 20px 0;
+        }
+
+        .com-choice {
+            height: 125px;
         }
 
         #question-container {
             display: inline-block;
-            width: 100px;
-            height: 100px;
+            width: 125px;
+            height: 125px;
             text-align: center;
-            font-size: 4rem;
+            font-size: 5rem;
             border: 3px solid white;
             border-radius: 100%;
         }
@@ -65,7 +72,7 @@
         }
 
         #vs {
-            font-size: 36px;
+            font-size: 4rem;
         }
 
         .player_img_select {
@@ -73,7 +80,7 @@
         }
 
         img {
-            width: 100px;
+            width: 125px;
             border: 2px solid white;
             border-radius: 100%;
             margin: 0 10px;
@@ -104,6 +111,111 @@
 
         .hidden {
             display: none !important;
+        }
+
+        @media all and (min-width:768px) and (max-width:1023px) {
+            .face-icon {
+                margin: 0 50px;
+                font-size: 5rem;
+            }
+
+            .game_container {
+                font-size: 2rem;
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .com-choice {
+                height: 100px;
+            }
+
+            #question-container {
+                width: 100px;
+                height: 100px;
+                font-size: 4rem;
+            }
+
+            #vs {
+                font-size: 3rem;
+            }
+
+        }
+
+        /* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+        @media all and (min-width:480px) and (max-width:767px) {
+            .face {
+                display: none;
+            }
+
+            .game_container {
+                font-size: 2rem;
+            }
+
+            .com-choice {
+                height: 100px;
+            }
+
+            #question-container {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            #vs {
+                font-size: 2rem;
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+            }
+
+            button {
+                width: 100px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
+        }
+
+        /* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+        @media all and (max-width:479px) {
+            .face {
+                display: none;
+            }
+
+            .game_container {
+                font-size: 1.5rem;
+            }
+
+            .com-choice {
+                height: 75px;
+            }
+
+            #question-container {
+                width: 75px;
+                height: 75px;
+                font-size: 3rem;
+            }
+
+            #vs {
+                font-size: 2rem;
+            }
+
+            img {
+                width: 75px;
+                height: 75px;
+            }
+
+            button {
+                width: 100px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
         }
     </style>
 </head>
