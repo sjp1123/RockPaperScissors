@@ -21,13 +21,31 @@
             text-align: center;
         }
 
+        .face-icon {
+            color: white;
+            font-size: 5rem;
+            position: absolute;
+        }
+
+        .face .face-icon:first-child {
+            left: 0;
+            top: 50%;
+            margin-left: 50px;
+        }
+
+        .face .face-icon:last-child {
+            right: 0;
+            top: 50%;
+            margin-right: 50px;
+        }
+
         .game_container {
             font-size: 3rem;
             text-align: center;
             color: white;
         }
 
-        .game_container>* {
+        .game_container > * {
             margin: 20px 0;
         }
 
@@ -67,9 +85,9 @@
             cursor: pointer;
         }
 
-        .retry {
+        button {
             width: 100px;
-            height:50px;
+            height: 50px;
             font-size: 1rem;
             cursor: pointer;
         }
@@ -83,17 +101,27 @@
             position: absolute;
             bottom: 0;
         }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 
 <body>
     <h1 id="title">가위바위보</h1>
 
+    <div class="face">
+        <i class="fa-solid fa-face-smile face-icon"></i>
+        <i class="fa-solid fa-face-smile face-icon"></i>
+    </div>
+
     <div class="game_container">
         <div class="com-choice">
             <div id="question-container">
                 <span id="question">?</span>
             </div>
+            <img class="hidden">
         </div>
 
         <h2 id="vs">VS</h2>
@@ -107,6 +135,7 @@
         <p id="result">가위바위보!</p>
 
         <button class="retry">다시하기</button>
+        <a href="main.html"><button>메인으로</button></a>
     </div>
 
 
@@ -122,23 +151,39 @@
     </footer> -->
 </body>
 
+<script src="https://kit.fontawesome.com/21b900d064.js" crossorigin="anonymous"></script>
+
 <script>
+    const faceIcons = document.querySelectorAll("i.face-icon");
     const playerImgSelect = document.querySelector("div.player_img_select");
     const images = playerImgSelect.querySelectorAll("img");
 
     const computerChoice = document.querySelector(".com-choice");
+    const computerImage = computerChoice.querySelector("img");
     const questionContainer = document.querySelector("#question-container");
     const result = document.getElementById("result");
     const retry = document.querySelector(".retry");
 
+    const ChangeFaceIcon = (face) => {
+        faceIcons.forEach(icon => {
+            icon.classList.remove("fa-face-meh");
+            icon.classList.remove("fa-face-smile");
+            icon.classList.remove("fa-face-frown");
+            icon.classList.add("fa-face-" + face);
+        });
+    };
+
     const CheckIfWin = (playerId, computerId) => {
         console.log(playerId, computerId);
         if (playerId == computerId) {
+            ChangeFaceIcon("meh");
             return "비겼습니다!";
         } else if ((playerId == 0 && computerId == 2) || (playerId == 1 && computerId == 0) || (playerId == 2 &&
             computerId == 1)) {
+            ChangeFaceIcon("smile");
             return "이겼습니다!";
         } else {
+            ChangeFaceIcon("frown");
             return "졌습니다!";
         }
     }
@@ -149,29 +194,37 @@
 
         for (let i = 0; i < images.length; i++) {
             if (images[i].id !== elementId) {
-                images[i].remove();
+                images[i].classList.add("hidden");
             }
         }
 
         questionContainer.classList.add("turn");
 
         setTimeout(() => {
-            questionContainer.remove()
+            questionContainer.classList.add("hidden");
+            questionContainer.classList.remove("turn");
+            computerImage.classList.remove("hidden");
             const randomNumber = Math.floor(Math.random() * 3);
-            const randomImg = images[randomNumber].cloneNode(true);
-            computerChoice.appendChild(randomImg);
+            const randomImgSrc = images[randomNumber].src;
+            computerImage.src = randomImgSrc;
             const resultText = CheckIfWin(parseInt(elementId), randomNumber);
             result.innerText = resultText;
         }, 2000);
+    }
+
+    const Retry = () => {
+        questionContainer.classList.remove("hidden");
+        images.forEach(img => {
+            img.classList.remove("hidden");
+        });
+        computerImage.classList.add("hidden");
     }
 
     for (image of images) {
         image.addEventListener("click", HandleClick);
     }
 
-    retry.addEventListener("click", () => {
-        location.reload();
-    });
+    retry.addEventListener("click", Retry);
 </script>
 
 </html>
