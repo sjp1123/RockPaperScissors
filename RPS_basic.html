@@ -12,6 +12,7 @@
 
         body {
             background-color: rgb(26, 26, 26);
+            font-size: 1rem;
         }
 
         #title {
@@ -42,11 +43,11 @@
 
         .turn {
             transform: rotateY(1080deg);
-            transition: all 3s;
+            transition: all 2s;
         }
 
         #vs {
-            font-size: 3rem;
+            font-size: 36px;
         }
 
         .player_img_select {
@@ -60,6 +61,17 @@
             margin: 0 10px;
             padding: 5px;
             transition: all 0.5s;
+        }
+
+        .player_img_select img:hover {
+            cursor: pointer;
+        }
+
+        .retry {
+            width: 100px;
+            height:50px;
+            font-size: 1rem;
+            cursor: pointer;
         }
 
         footer {
@@ -93,6 +105,8 @@
         </div>
 
         <p id="result">가위바위보!</p>
+
+        <button class="retry">다시하기</button>
     </div>
 
 
@@ -115,6 +129,7 @@
     const computerChoice = document.querySelector(".com-choice");
     const questionContainer = document.querySelector("#question-container");
     const result = document.getElementById("result");
+    const retry = document.querySelector(".retry");
 
     const CheckIfWin = (playerId, computerId) => {
         console.log(playerId, computerId);
@@ -147,13 +162,16 @@
             computerChoice.appendChild(randomImg);
             const resultText = CheckIfWin(parseInt(elementId), randomNumber);
             result.innerText = resultText;
-        }, 3000);
+        }, 2000);
     }
 
     for (image of images) {
         image.addEventListener("click", HandleClick);
     }
 
+    retry.addEventListener("click", () => {
+        location.reload();
+    });
 </script>
 
 </html>
