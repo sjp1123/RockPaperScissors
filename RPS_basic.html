@@ -100,10 +100,9 @@
         }
 
         footer {
+            color: white;
+            text-align: right;
             padding-bottom: 3px;
-            text-align: center;
-            background-color: gray;
-            border: 1px solid black;
             width: 100%;
             position: absolute;
             bottom: 0;
@@ -247,10 +246,12 @@
         <p id="result">가위바위보!</p>
 
         <button class="retry">다시하기</button>
-        <a href="main.html"><button>메인으로</button></a>
+        <a href="index.html"><button>메인으로</button></a>
     </div>
 
-
+    <footer>
+        <p>Made By shijun</p>
+    </footer>
 
 
     <!-- <footer>
@@ -275,6 +276,7 @@
     const questionContainer = document.querySelector("#question-container");
     const result = document.getElementById("result");
     const retry = document.querySelector(".retry");
+    let isGame = true;
 
     const ChangeFaceIcon = (face) => {
         faceIcons.forEach(icon => {
@@ -301,6 +303,10 @@
     }
 
     const HandleClick = (event) => {
+        if (isGame == false) {
+            return;
+        }
+        isGame = false;
         const element = event.target;
         const elementId = element.id;
 
@@ -321,6 +327,7 @@
             computerImage.src = randomImgSrc;
             const resultText = CheckIfWin(parseInt(elementId), randomNumber);
             result.innerText = resultText;
+
         }, 2000);
     }
 
@@ -330,6 +337,8 @@
             img.classList.remove("hidden");
         });
         computerImage.classList.add("hidden");
+        result.innerText = "가위바위보!";
+        isGame = true;
     }
 
     for (image of images) {
